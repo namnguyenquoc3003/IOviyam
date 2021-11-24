@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>iOviyam | Configuration</title>
+        <!--        <link rel="stylesheet" href="css/jquery.mobile-1.1.1.min.css" />-->
+        <link href="JSLoader?EDITOR=no&FileName=jquery.mobile-1.4.2.min.css" rel="stylesheet" type="text/css" />
+        <link rel="icon" href="css/images/favicon.ico" />
+
+        <link rel="stylesheet" href="JSLoader?EDITOR=no&FileName=home.css" />
+        <link type="text/css" href="JSLoader?EDITOR=no&FileName=jqm-datebox.min.css" rel="stylesheet" /> 
+        <link type="text/css" href="JSLoader?EDITOR=no&FileName=jquery.mobile.simpledialog.min.css" rel="stylesheet" /> 
+        <link type="text/css" href="JSLoader?EDITOR=no&FileName=demos.css" rel="stylesheet" />
+        <script src="JSLoader?EDITOR=yes&FileName=JqueryMobile-mini/jquery.min.js"/>
+        <script src="JSLoader?EDITOR=yes&FileName=Controls/session.js"></script>
+        <!--<script src="js/JqueryMobile-mini/jquery.mobile-1.1.1.min.js"></script>-->
+        <script src="JSLoader?EDITOR=yes&FileName=JqueryMobile-mini/jquery.mobile-1.4.2.min.js"></script>
+        <script src="JSLoader?EDITOR=yes&FileName=Mobile-UI/home.js"></script>
+        <script src="JSLoader?EDITOR=yes&FileName=Controls/Rasterhandlers.js"></script>
+        <!--         <script src="js/ioviyam/home.js"></script>-->
+<!--        <script src="JSLoader?EDITOR=yes&FileName=lang/jquery-cookie.js" charset="utf-8" type="text/javascript"></script>
+        <script src="JSLoader?EDITOR=yes&FileName=lang/jquery-lang.js" charset="utf-8" type="text/javascript"></script>
+        <script src="JSLoader?EDITOR=yes&FileName=lang/lang.js" charset="utf-8" type="text/javascript"></script>-->
+        <script src="JSLoader?EDITOR=yes&FileName=ioviyam/config.js"></script>
+        <script>
+            $.mobile.selectmenu.prototype.options.nativeMenu = false;
+
+            $(".ui-btn").attr('lang', 'en');
+            langChange(currentLang);
+
+        </script>
+        <style>.btnConfig {
+                -moz-box-shadow:inset 1px -1px 1px 0px #1a1a1a;
+                -webkit-box-shadow:inset 1px -1px 1px 0px #1a1a1a;
+                box-shadow:inset 1px -1px 1px 0px #1a1a1a;
+                background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #383838), color-stop(1, #141114) );
+                background:-moz-linear-gradient( center top, #383838 5%, #141114 100% );
+                filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#383838', endColorstr='#141114');
+                background-color:#383838;
+                -moz-border-radius:10px;
+                -webkit-border-radius:10px;
+                border-radius:10px;
+                border:1px solid #000;
+                display:inline-block;
+                color:#ffffff;
+                /*font-family: Georgia, "Times New Roman", Times, serif;*/
+                font-size:18px;
+                letter-spacing: 2px;
+                /*font-weight: bold;*/
+                text-align: center;
+                padding:11px 25px;
+                text-decoration:none;
+                text-shadow:0px 0px 0px #0f0c0f;
+
+            }.btn:hover {
+                background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #141114), color-stop(1, #383838) );
+                background:-moz-linear-gradient( center top, #141114 5%, #383838 100% );
+                filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#141114', endColorstr='#383838');
+                background-color:#141114;
+            }.btn:active {
+                position:relative;
+                top:1px;
+            }</style>
+    </head>
+    <body bgcolor="black">
+        <div data-role="page" data-theme="b" lang="en" id="config" style="background: black">
+            <div data-theme="b" lang="en" data-role="header" data-position="fixed">
+                <h2 lang="en">
+                    Configuration
+                </h2>
+                <a lang="en" class="btnborder"  id="btnbackconfig"   >Back</a>
+
+            </div>
+            <div  data-role="content" lang="en">
+                <!--                <div>
+                                    <fieldset data-role="controlgroup">
+                                        <label for="logicalnametxt">
+                                        </label>
+                                        <input name="" id="logicalnametxt" placeholder="Description" value="" type="text" />
+                                    </fieldset>
+                                </div>-->
+                <div >
+                    <fieldset data-role="controlgroup">
+                        <label for="aetitletxt">
+                        </label>
+                        <input name="" id="aetitletxt" placeholder="AE Title" value="" type="text" />
+                    </fieldset>
+                </div>
+                <div >
+                    <fieldset data-role="controlgroup">
+                        <label for="hosttxt">
+                        </label>
+                        <input name="" id="hosttxt" placeholder="Host Name" value="" type="text" />
+                    </fieldset>
+                </div>
+                <div >
+                    <fieldset data-role="controlgroup">
+                        <label for="porttxt">
+                        </label>
+                        <input name="" id="porttxt" placeholder="Port" value="" type="text" />
+                    </fieldset>
+                </div>
+                <div >
+                    <fieldset data-role="controlgroup">
+                        <label for="wadotxt">
+                        </label>
+                        <input name="" id="wadotxt" placeholder="Wado port" value="" type="text" />
+                    </fieldset>
+                </div>
+
+                <div >
+                    <fieldset data-role="controlgroup">
+                        <label for="listener">
+                        </label>
+                        <input name="" id="listener" placeholder="Listener" value="" type="text" />
+                    </fieldset>
+                </div>
+
+                <div >
+                    <fieldset data-role="controlgroup">
+                        <label for="listener_port">
+                        </label>
+                        <input name="" id="listener_port" placeholder="Listener-Port" value="" type="text" />
+                    </fieldset>
+                </div>
+                <div style="display: none">
+                    <fieldset data-role="controlgroup" data-theme="b">
+                        <div class="ui-field-contain"  data-theme="b">
+                            <label for="select-choice-1" class="select"></label>
+                            <select name="select-choice-1" id="query_type" data-theme="b">
+                                <option value="CGET">C-GET</option>
+                                <option value="CMOVE">C-MOVE</option>
+                                <option value="WADO">WADO</option>
+
+                            </select>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div id="typequery">
+                    <fieldset data-role="controlgroup">
+                        <legend><label for="query_type">Query Type:</label></legend>
+                        <input type="radio" name="radio-choice" id="radio-choice-1" value="WADO" >
+                        <label for="radio-choice-1">WADO</label>
+
+                        <input type="radio" name="radio-choice" id="radio-choice-2" value="CGET">
+                        <label for="radio-choice-2">C-GET</label>
+
+                        <input type="radio" name="radio-choice" id="radio-choice-3" value="CMOVE">
+                        <label for="radio-choice-3">C-MOVE</label>
+                    </fieldset>
+                </div>
+
+                <div >
+                    <label for="compress">Compress:</label>
+                    <select name="compress" id="compress" data-theme="b" style="float:left" data-role="slider" data-track-theme="a" data-theme="a">
+                        <option value="off">Off</option>
+                        <option value="on">On</option>
+                    </select>
+                </div>
+
+                <div >
+                    <label for="scaledown">Scale Down:</label>
+                    <select name="scaledown" id="scaledown" data-theme="b" style="float:right" data-role="slider" data-track-theme="a" data-theme="a">
+                        <option value="off">Off</option>
+                        <option value="on">On</option>
+                    </select>
+                </div>
+
+                <div    id="configuration" class="btnConfig"  lang="en" data-inline="true" data-icon="delete" data-iconpos="right" >Add</div>
+                <div    id="clearconfig" class="btnConfig"  lang="en" data-inline="true" data-icon="delete" data-iconpos="right" >Clear</div>
+                <div    id="echobtn" class="btnConfig"  lang="en" data-inline="true" data-icon="delete" data-iconpos="right" >Echo</div>
+            </div>
+            <div>
+            </div>
+        </div>
+    </body>
+</html>

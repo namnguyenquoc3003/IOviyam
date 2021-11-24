@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta charset="utf-8">
+        <link rel="icon" href="css/images/favicon.ico" />
+        <title>iOviyam</title>
+        <link type="text/css" href="JSLoader?EDITOR=no&FileName=jqm-datebox.min.css" rel="stylesheet" /> 
+        <link type="text/css" href="JSLoader?EDITOR=no&FileName=jquery.mobile.simpledialog.min.css" rel="stylesheet" /> 
+        <link type="text/css" href="JSLoader?EDITOR=no&FileName=demos.css" rel="stylesheet" />
+        <link type="text/css" href="JSLoader?EDITOR=no&FileName=home.css" rel="stylesheet" />
+        <link type="text/css" rel="stylesheet" href="JSLoader?EDITOR=no&FileName=touchslider.css" />
+
+        <link rel="apple-touch-icon" href="i-ovm.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="touch-icon-ipad.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="touch-icon-iphone-retina.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="touch-icon-ipad-retina.png" />
+        <!--<script src="js/tools/zoomer/jquery-1.js"></script>-->
+        <script src="JSLoader?EDITOR=yes&FileName=JqueryMobile-mini/jquery.min.js"></script>
+        <script src="jpx.js"></script>
+        <link href="JSLoader?EDITOR=no&FileName=jquery.mobile-1.4.2.min.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="JSLoader?EDITOR=yes&FileName=RasterImageWriter.js"></script>
+        <script>
+            $(document).bind('mobileinit', function() {
+                $.mobile.loadingMessageTheme = 'a';
+                $.mobile.loadingMessageTextVisible = true;
+                $.mobile.loadingMessage = "Loading...";
+            });
+            function hideAddressBar() {
+                if (document.documentElement.scrollHeight < window.outerHeight / window.devicePixelRatio)
+                    document.documentElement.style.height = (window.outerHeight / window.devicePixelRatio) + 'px';
+                setTimeout(window.scrollTo(1, 0), 0);
+            }
+            window.addEventListener("load", function() {
+                hideAddressBar();
+            });
+            window.addEventListener("orientationchange", function() {
+                hideAddressBar();
+            });
+        </script>
+
+        <script type="text/javascript" src="JSLoader?EDITOR=yes&FileName=libs/jsdicom-lib/src/dcmdict.js"></script>
+        <script type="text/javascript" src="JSLoader?EDITOR=yes&FileName=libs/jsdicom-lib/src/binutils.js"></script>
+        <script type="text/javascript" src="JSLoader?EDITOR=yes&FileName=libs/jsdicom-lib/src/dcmfile.js"></script>
+        <script type="text/javascript" src="JSLoader?EDITOR=yes&FileName=libs/jsdicom-lib/src/dicomparser.js"></script>
+        <script type="text/javascript" src="JSLoader?EDITOR=yes&FileName=libs/jsdicom-lib/src/transfersyntax.js"></script>
+        <script type="text/javascript" src="JSLoader?EDITOR=yes&FileName=libs/jsdicom-lib/src/qr.js"></script>
+        <script src="JSLoader?EDITOR=yes&FileName=Controls/Store.js"></script>
+        <script src="JSLoader?EDITOR=yes&FileName=JqueryMobile-mini/jquery.mobile-1.4.2.min.js"></script>
+        <script src="JSLoader?EDITOR=yes&FileName=JqueryMobile-mini/jqm.page.params.js"></script>
+        <script src="JSLoader?EDITOR=yes&FileName=jk/openjpeg.js"></script>
+        <script src="JSLoader?EDITOR=yes&FileName=Mobile-UI/spin.min.js"></script>
+        <script src="JSLoader?EDITOR=yes&FileName=Controls/toolsbar.js"></script>
+        <script src="JSLoader?EDITOR=yes&FileName=Controls/dicomviewer22_1.js"></script>
+        <script src="JSLoader?EDITOR=yes&FileName=Controls/Rastertools.js"></script>
+        <script src="JSLoader?EDITOR=yes&FileName=Controls/drag.js"></script>
+        <script src="JSLoader?EDITOR=yes&FileName=ioviyam/viewer.js"></script>
+        <script src="JSLoader?EDITOR=yes&FileName=Controls/jquery.longclick.js"></script>
+        <script src="JSLoader?EDITOR=yes&FileName=tools/zoomer/jquery.js"></script>
+        <script src="JSLoader?EDITOR=yes&FileName=tools/zoomer/hammer.js"></script>
+        <script src="JSLoader?EDITOR=yes&FileName=tools/zoomer/myLogic.js"></script>
+        <link href="JSLoader?EDITOR=yes&FileName=style.css" rel="stylesheet" type="text/css">
+        <link type="text/css" href="JSLoader?EDITOR=no&FileName=viewer.css" rel="stylesheet" />
+        <script src="JSLoader?EDITOR=yes&FileName=Controls/Rasterhandlers.js"></script>
+        <script src="JSLoader?EDITOR=yes&FileName=Controls/webviewer.js"></script>
+        
+        <script src="worker.js"></script>
+        <script>
+            var worker = new Worker('worker.js');
+            $(document).bind("touchmove", function(event) {
+                event.preventDefault();
+            });
+            window.addEventListener("load", function() {
+                // Set a timeout.
+                setTimeout(function() {
+                    // Hide the address bar!
+                    window.scrollTo(0, 1);
+                }, 0);
+            });
+            $(document).ready(function() {
+                $("#popupPanel").popup();
+                $("#popupclick1").bind("click", function() {
+                    $("#popupPanel").popup("open")
+                });
+                
+                $("#popupPanelI").popup();
+                $("#popupclickI").bind("click", function() {
+                	var param = {
+               	        "seriesid" : localStorage.getItem("seriesid")
+               	    };
+					$.get("seriesReport.do", param, function(data) {
+						$.each(data, function(i, row) {
+							$('#seriesid').val(localStorage.getItem("seriesid"));
+		                    $('#numeOrde').val($.trim(row['reportOrderNumb'].toString()));
+		                    $('#diagMedi').val($.trim(row['reportMedicDiag'].toString()));
+		                    $('#obse').val($.trim(row['reportObs'].toString()));
+						});
+						$.mobile.loading("hide");
+					});
+                    $("#popupPanelI").popup("open");
+                });
+                
+                $("#buttonGrabarReporte").bind('click', function(e) {
+                	
+                	$.post("seriesReport.do", {
+                		"seriesid"  : $('#seriesid').val(),
+                		"numeOrde" 	: $('#numeOrde').val(),
+                		"diagMedi" 	: $('#diagMedi').val(),
+                		"obse" 		: $('#obse').val()
+                	}, function(data) {
+                		$.mobile.loading("show", {
+                			text 		: "Guardado ",
+                			textVisible : true,
+                			theme 		: "b",
+                			html 		: ""
+                		});
+                		window.timeOutId = window.setTimeout(function() {
+                			$.mobile.loading("hide");
+                		}, 1200);
+                	});
+                	window.timeOutId = window.setTimeout(function() {
+                		$.mobile.loading("hide");
+                	}, 1200);
+                });
+            });
+
+            $("#Tbtnclose").attr("disabled", "true");
+            
+        </script>
+        <style>
+                ui-loader .ui-icon {
+                    background-image: url(img/overlay_spinner.gif);
+                } 
+                .ui-icon-loading {  
+                    background-image: url(img/overlay_spinner.gif);
+                    background-size: 42px 42px;
+                }
+            </style>
+        <style>
+            #ivbtnback{
+                border:2px solid;
+                border-radius:25px;
+                -moz-border-radius:25px; 
+            }
+            #popupclick1{
+                /*
+                                border:2px solid;
+                                border-radius:25px;
+                                -moz-border-radius:25px; */
+            }
+            #popupclickI{
+            	right: 7.2em !important;
+            }
+            .div-customized {
+	            padding-right: 7px ! important;
+	            padding-left: 7px ! important;
+            }
+            .div-button-customized {
+	            position: relative !important;
+				margin-bottom: 1em !important;
+            }
+            .ui-corner-flat {
+                border-top-left-radius: 0px !important;
+                border-top-right-radius: 0px !important;
+                border-bottom-left-radius: 0px !important;
+                border-bottom-right-radius: 0px !important;
+            }
+            #footerSlider>div>div {
+                border-color: grey !important;
+            }
+            #footerSlider>div>div>a {
+                background-color:grey !important;
+            }
+        </style>
+        <script type="text/javascript" src="js/Controls/touchslider.js"></script>
+    </head>
+    <body>
+        <div data-role="page" data-theme="b" id="viewerPage" style="background: black">
+            <div id="headerview" data-theme="b"  style="z-index:40;" data-role="header" data-position="inline"  >
+                <!--                <a  class="button" data-icon="arrow-l" id="ivbtnback" >Back</a>
+                                <h3>iOviyam 2.0</h3>
+                                <a id="popupclick1"    href="#popupPanel" data-rel="popup"  data-position-to="window" data-role="button" data-icon="gear" data-iconpos="left" >Tools</a>
+                -->
+                <a  class="button" data-theme="b" data-icon="arrow-l" data-rel="back" href="#Seriespage"  id="ivbtnback1" >Back</a>
+                <h1 class="ui-title" >iOviyam</h1>
+                <div class="ui-btn-right" id="popupclickI" data-theme="b" data-role="controlgroup" data-type="horizontal">
+                	<a    data-theme="b" href="#"  data-role="button" data-icon="info" data-mini="true">Report</a>
+                </div>
+                <div class="ui-btn-right" id="popupclick1" data-theme="b" data-role="controlgroup" data-type="horizontal">
+                    <a    data-theme="b"  href="#"  data-role="button" data-icon="gear" data-mini="true">Tools</a>
+                </div>
+                <div data-theme="b" id="popupPanel" data-role="popup" class="toolbarclr" data-shadow="false" data-tolerance="0,0">
+                    <div id="lengthcalc" data-role="content" class="ui-block-a">
+                        <div data-role="content" class="ui-block-a"  data-theme="b">
+                            <div id="Tbtnwindowlevel" data-role="content" class="Tbtnwlwwgrey" data-theme="b"  > </div>
+                            <div id="Tbtnzoomdrag" data-role="content" class="Tbtnzoomdrags"  > </div>
+                            <div id="Tbtnrotatel" data-role="content" class="Tbtnrotatels"  > </div>
+                            <div id="Tbtntextovly" data-role="content" class="Tbtntextovlys"  > </div>
+                        </div>
+                        <div data-role="content" class="ui-block-b" data-theme="b"> 
+                            <div id="Tbtnline" data-role="content"  class="Tbtnlines" > </div>
+                            <div id="Tbtninvert" data-role="content"  class="Tbtninverts" > </div>
+                            <div id="Tbtnrotater" data-role="content"  class="Tbtnrotaters" > </div>
+                            <div id="Tbtnreset" data-role="content"  class="Tbtnresets"> </div>
+                        </div>
+                        <div class="ui-block-c"  data-theme="b">
+                            <div id="Tbtncircle" data-role="content"  class="Tbtncircles" > </div>
+                            <div id="Tbtnfliphori" data-role="content" class="Tbtnfliphoris"> </div>
+                            <div id="Tbtnflipver" data-role="content" class="Tbtnflipvers"  > </div>
+                            <div id="Tbtnclose"  data-role="content" class="Tbtnclosegrey" >  </div>
+                        </div> 
+                    </div>
+                </div>
+                
+                <div data-theme="b" id="popupPanelI" data-role="popup" class="toolbarclr" data-shadow="false" data-tolerance="0,0">
+                    <div id="lengthcalc" data-role="content" class="ui-block-a">
+                    	<input name="" id="seriesid" value="" type="hidden" />
+						<div class="div-customized">
+							<fieldset data-role="controlgroup">
+								<legend><label for="numeOrde">N&ordm; Orden:</label></legend>
+								<input name="" id="numeOrde" value="" type="text" />
+							</fieldset>
+						</div>
+						<div class="div-customized">
+							<fieldset data-role="controlgroup">
+								<legend><label for="diagMedi">Diagn&oacute;stico M&eacute;dico:</label></legend>
+								<textarea name="" id="diagMedi" value="" type="text" cols="40" rows="4"></textarea>
+							</fieldset>
+						</div>
+						<div class="div-customized">
+							<fieldset data-role="controlgroup">
+								<legend><label for="obse">Observaciones:</label></legend>
+								<textarea name="" id="obse" value="" type="text" cols="40" rows="4"></textarea>
+							</fieldset>
+						</div>
+						<div align="right" class="ui-btn-right div-button-customized" id="buttonGrabarReporte" data-theme="b" data-role="controlgroup" data-type="horizontal">
+		                	<a data-theme="b" href="#" data-role="button" data-icon="check" data-mini="true">Guardar</a>
+		                </div>
+					</div>
+                </div>
+                <!--                popupPanelmm-->
+                <div id="popupPanelmm" data-position-to="origin" data-role="popup" data-theme="b"   data-shadow="false" data-tolerance="0,0"  class="toolbarclr">
+                    <div data-role="content"  class="toolbarclr"  data-theme="b">
+                        <div class="ui-grid-b"  data-theme="b">
+                            <div data-role="content" class="ui-block-a" style="width: 0%" >
+                                <div id="btndefault" data-role="content" class="rbtndefault" > </div>
+                                <div id="btnabdomen" data-role="content" class="rbtnabdoman"> </div>
+                                <div id="btnlung" data-role="content"  class="rbtnlungs"> </div>
+                                <div id="btnbrain" data-role="content"  class="rbtnbrain"> </div>
+                                <div id="btnbone" data-role="content"  class="rbtnbone"> </div>
+                                <div id="btnheadneck" data-role="content" class="rbtnhandn"> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="popupseriespage" data-theme="b" data-position-to="origin" data-role="popup"   data-shadow="false" data-tolerance="0,0"  class="toolbarclr">
+                    <div data-role="content"  class="toolbarclr" id="seriespageloader">
+                        <iframe id="seriespageloaderframe" src="" 
+                                width="480" 
+                                height="320" 
+                                seamless>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+            <div data-theme="b" id="tmpimage"      style="display: none;"></div>
+            <div data-theme="b"><label id="patNameoly"   class="cover" > </label></div>
+            <div data-theme="b"><label id="sexoly"       class="cover" ></label></div>
+            <div data-theme="b"><label id="modalityoly"  class="cover" ></label></div>
+            <div data-theme="b"><label id="studydateoly" class="cover" ></label> </div>
+            <div data-theme="b"><label id="studydesceoly" class="cover" ></label></div>
+            <div data-theme="b"><label id="bodypartoly"  class="cover" ></label></div>
+            <div data-theme="b"><label id="imageoly"     class="cover" ></label></div>
+            <div data-theme="b"><label id="wlwcoly"      class="cover" ></label></div>
+            <div data-theme="b"><label id="thicknewwoly" class="cover" ></label></div>
+            <a id="divtools"  data-theme="b"    style="position: absolute; z-index:40001;" href="#popupPanel" data-rel="popup"  data-position-to="window"></a>
+            <!--             <div id="arrowdiv" data-role="content" class="arrow"></div>-->
+            <div id="pixelspacingoly" data-theme="b"  style="background-color: black;display: none;"></div>
+            <div><label id="resolution"  data-theme="b"   class="cover"></label></div>
+            <div><label id="seriesdesceoly" data-theme="b" class="cover" ></label></div>
+            <canvas id="measure"  style="display: none;z-index:50;position: absolute;" ></canvas>
+            <div id="wrap" style="z-index:1; position:absolute;" >
+                <canvas id="imgcanvas" style="z-index:1;position:absolute;" width="578" height="400"  ></canvas>
+                <iframe id="iframe_sr" style="background-color: black;position:absolute;width:578;height:400;" onload="this.width = screen.width;
+                this.height = screen.height;" >  </iframe>            </div>
+            <!--     <div id="carousel" style=" position:absolute;"><ul id="listofuls"></ul></div>-->
+            <canvas id="overlayc"  data-theme="b" style="position:absolute;z-index:0;"></canvas>
+            <div id="footerview" data-theme="b" style="z-index:50000;position: absolute "  align="center"    data-position="fixed" >
+                <table width="90%" id="foottable" style="display:none">
+                    <tr>
+                        <td width="10%"  align="center" id="backbtns1"   >
+                            <a style="z-index:500;" data-iconpos="notext" data-theme="c" data-icon="arrow-l" id="backbtns" data-role="button" ></a>
+                        </td>
+                        <td width="90%" align="center" style="z-index:500;" >
+                            <div id="footerSlider">
+                                <input type="range"  style="width:100% !important" name="slider"  id="imgSlider" data-mini="true"/>
+                            </div>
+                        </td>
+                        <td width="10%"  align="center" style="padding-left:0px;" id="nxtbtn1" >
+                            <a  data-iconpos="notext" data-icon="arrow-r" id="nxtbtn" data-theme="c" data-role="button" ></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
+

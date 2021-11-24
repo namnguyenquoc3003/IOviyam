@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>iOviyam</title>
+        <link rel="stylesheet" href="JSLoader?EDITOR=no&FileName=home.css" />
+        <!--<link type="text/css" href="css/jqm-datebox.min.css" rel="stylesheet" />--> 
+        <link rel="icon" href="css/images/favicon.ico" />
+        <link rel="apple-touch-icon" href="i-ovm.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="touch-icon-ipad.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="touch-icon-iphone-retina.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="touch-icon-ipad-retina.png" />
+        <!-- NOTE: Script load order is significant! -->
+        <!--<script src="js/JqueryMobile-mini/jquery.min.js"></script>-->
+        <!--<script src="js/JqueryMobile-mini/jquery.mobile-1.1.1.min.js"></script>-->
+        <script src="JSLoader?EDITOR=yes&FileName=JqueryMobile-mini/jquery.min.js"></script>
+        <script>
+            $(document).bind('mobileinit', function() {
+                $.mobile.loadingMessageTheme = 'a';
+                $.mobile.loadingMessageTextVisible = true;
+                $.mobile.loadingMessage = "Loading...";
+            });
+        </script>
+        <style>
+
+                ui-loader .ui-icon {
+                    background-image: url(img/overlay_spinner.gif);
+                } 
+
+                .ui-icon-loading {  
+                    background-image: url(img/overlay_spinner.gif);
+                    background-size: 42px 42px;
+                }
+            </style>
+        <script src="JSLoader?EDITOR=yes&FileName=Mobile-UI/home.js"></script>
+        
+        <link href="JSLoader?EDITOR=no&FileName=jquery.mobile-1.4.2.min.css" rel="stylesheet" type="text/css" />
+        <script src="JSLoader?EDITOR=yes&FileName=JqueryMobile-mini/jquery.mobile-1.4.2.min.js"></script>
+         <link href="JSLoader?EDITOR=no&FileName=mobiscroll.custom-2.5.0.min.css" rel="stylesheet" type="text/css" />
+        <script src="JSLoader?EDITOR=yes&FileName=Mobile-UI/mobiscroll.custom-2.5.0.min.js" type="text/javascript"></script>
+        <script src="JSLoader?EDITOR=yes&FileName=Controls/Rasterhandlers.js"></script>
+        <!--<link rel="stylesheet" href="css/jquery.mobile-1.1.1.min.css" />-->
+        <script src="JSLoader?EDITOR=yes&FileName=Controls/date.js"></script>
+        <script src="JSLoader?EDITOR=yes&FileName=ioviyam/home.js"></script>
+        <script src="JSLoader?EDITOR=yes&FileName=ioviyam/patient.js"></script>
+        <script src="JSLoader?EDITOR=yes&FileName=ioviyam/series.js"></script>
+        <!--        <script src="js/tools/zoomer/jquery-1.js"></script>
+                <script src="js/JqueryMobile-mini/jquery.min.js"></script>-->
+        <style>
+
+                ui-loader .ui-icon {
+                    background-image: url(img/overlay_spinner.gif);
+                } 
+
+                .ui-icon-loading {  
+                    background-image: url(img/overlay_spinner.gif);
+                    background-size: 42px 42px;
+                }
+            </style>
+        <script>
+            $(document).bind('mobileinit', function() {
+                $.mobile.loadingMessageTheme = 'a';
+                $.mobile.loadingMessageTextVisible = true;
+                $.mobile.loadingMessage = "Loading...";
+                
+                
+                
+            });
+            function hideAddressBar() {
+                if (document.documentElement.scrollHeight < window.outerHeight / window.devicePixelRatio)
+                    document.documentElement.style.height = (window.outerHeight / window.devicePixelRatio) + 'px';
+                setTimeout(window.scrollTo(1, 0), 0);
+            }
+            window.addEventListener("load", function() {
+                hideAddressBar();
+            });
+            window.addEventListener("orientationchange", function() {
+                hideAddressBar();
+            });
+        </script>
+        <style>
+
+                ui-loader .ui-icon {
+                    background-image: url(img/overlay_spinner.gif);
+                } 
+
+                .ui-icon-loading {  
+                    background-image: url(img/overlay_spinner.gif);
+                    background-size: 42px 42px;
+                }
+            </style>
+        <script src="JSLoader?EDITOR=yes&FileName=JqueryMobile-mini/jqm.page.params.js"></script>
+<!--        <script type="text/javascript" src="js/BinFileReader.js"></script>
+        <script type="text/javascript" src="js/dicom/DicomInputStreamReader.js"></script>
+        <script type="text/javascript" src="js/dicom/DicomElement.js"></script>
+        <script type="text/javascript" src="js/dicom/DicomParser.js"></script>
+        <script type="text/javascript" src="js/dicom/LookupTable.js"></script>
+        <script src="js/Mobile-UI/spin.min.js"></script>
+        <script src="js/Controls/toolsbar.js"></script>
+
+
+
+
+        <script src="js/Controls/dicomviewer.js"></script>
+        <script src="js/Controls/Rastertools.js"></script>
+        <script src="js/Controls/drag.js"></script>
+        <script src="js/ioviyam/viewer.js"></script>
+        <script src="js/Controls/jquery.longclick.js"></script>
+        <script src="js/tools/zoomer/jquery.js"></script>
+        <script src="js/tools/zoomer/hammer.js"></script>
+        <script src="js/tools/zoomer/myLogic.js"></script>
+        <link href="js/tools/zoomer/style.css" rel="stylesheet" type="text/css">
+        <link type="text/css" href="css/viewer.css" rel="stylesheet" />
+        <script src="js/Controls/Rasterhandlers.js"></script>
+        <script src="js/Controls/webviewer.js"></script>-->
+        <script>
+            $("#viewerPage").bind("touchmove", function(event) {
+                event.preventDefault();
+            });
+            window.addEventListener("load", function() {
+                // Set a timeout.
+                setTimeout(function() {
+                    // Hide the address bar!
+                    window.scrollTo(0, 1);
+                }, 0);
+            });
+            $("#Tbtnclose").attr("disabled", "true");
+            
+            
+        </script>
+        <style>
+            #ivbtnback{
+                border:2px solid;
+                border-radius:25px;
+                -moz-border-radius:25px; 
+            }
+            #popupclick1{
+
+/*                border:2px solid;
+                border-radius:25px;
+                -moz-border-radius:25px; */
+
+            }
+        </style>
+        <script type="text/javascript" src="JSLoader?EDITOR=yes&FileName=Controls/touchslider.js"></script>
+        <script type="text/javascript">
+            var addToHomeConfig = {
+                message: 'Install this iOviyam on your <strong>%device</strong>.tap  %icon and then Add to Home Screen.'
+            };
+        </script>
+        <link rel="stylesheet" href="JSLoader?EDITOR=no&FileName=add2home.css">
+        <script type="application/javascript" src="JSLoader?EDITOR=yes&FileName=Mobile-UI/add2home.js" charset="utf-8"></script>
+        <style>
+            /*            .stl{-moz-border-radius: 15px;
+                             -webkit-border-radius: 15px;
+                             border-radius: 15px;
+                             border: 2px solid;
+                        }
+                        .brderBtmclr{
+                            border-bottom:  1px solid #AAAAAA;
+                        }
+                        .brderBtmclrfirst{
+                            border-bottom:  2px solid grey;
+                            -webkit-border-top-left-radius: 15px;
+                            -webkit-border-top-right-radius: 15px;
+                            -moz-border-radius-topleft: 15px;
+                            -moz-border-radius-topright: 15px;
+                            border-top-left-radius: 15px;
+                            border-top-right-radius: 15px;
+                        }
+                        .brderBtmclrend{
+                                            border-bottom:  1px solid grey;
+                            -webkit-border-bottom-left-radius:  15px;
+                            -webkit-border-bottom-right-radius: 15px;
+                            -moz-border-radius-bottomleft: 15px;
+                            -moz-border-radius-bottomright: 15px;
+                            border-bottom-left-radius: 15px;
+                            border-bottom-right-radius: 15px;
+                        }
+                        .grdiv{
+                            border-bottom:  1px solid #000;
+                            background-image: linear-gradient(bottom, rgb(71,70,71) 69%);
+                            background-image: -o-linear-gradient(bottom, rgb(71,70,71) 69%);
+                            background-image: -moz-linear-gradient(bottom, rgb(71,70,71) 69%);
+                            background-image: -webkit-linear-gradient(bottom, rgb(71,70,71) 69%);
+                            background-image: -ms-linear-gradient(bottom, rgb(71,70,71) 69%);
+                            background-image: -webkit-gradient(
+                                linear,
+                                left bottom,
+                                left top,
+                                color-stop(0.69, rgb(71,70,71))
+                                );
+                        }
+                        .toolbarclr{
+                            background: -moz-linear-gradient(top,  rgba(0,0,0,0.09) 0%, rgba(0,0,0,0.09) 1%, rgba(0,0,0,0) 100%);  FF3.6+ 
+                            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.09)), color-stop(1%,rgba(0,0,0,0.09)), color-stop(100%,rgba(0,0,0,0)));  Chrome,Safari4+ 
+                            background: -webkit-linear-gradient(top,  rgba(0,0,0,0.09) 0%,rgba(0,0,0,0.09) 1%,rgba(0,0,0,0) 100%);  Chrome10+,Safari5.1+ 
+                            background: -o-linear-gradient(top,  rgba(0,0,0,0.09) 0%,rgba(0,0,0,0.09) 1%,rgba(0,0,0,0) 100%);  Opera 11.10+ 
+                            background: -ms-linear-gradient(top,  rgba(0,0,0,0.09) 0%,rgba(0,0,0,0.09) 1%,rgba(0,0,0,0) 100%);  IE10+ 
+                            background: linear-gradient(to bottom,  rgba(0,0,0,0.09) 0%,rgba(0,0,0,0.09) 1%,rgba(0,0,0,0) 100%);  W3C 
+                            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#17000000', endColorstr='#00000000',GradientType=0 );  IE6-9 
+                        }
+                        .ui-page { 
+                            background: gray;
+                        }
+                        a:-webkit-any-link{
+                            color: gray !important;;
+                            text-decoration:none !important;
+                        }
+                        .footerContainer{
+                            width:97%;
+                            border:none;
+                            position:relative;
+                        }
+                        #btnLogout{
+                            border:2px solid;
+                            border-radius:25px;
+                            -moz-border-radius:25px; 
+                        }
+                        #navgroup {text-align:center;}
+                        #navgroup div {display:inline-block;}*/
+        </style>
+    </head>
+    <body>
+
+
+        <div  data-role="page" class="grdiv" id="mainserch" style="background-color:green">
+            <div id="headerquery1" data-theme="b" data-role="header" >
+                <h3 id="headingtxt">
+                   iOviyam
+                </h3>
+                <a   id="btnLogout" data-theme="b"  class="" >Đăng xuất</a>
+                <a href="#" id="editbtn"  data-icon="gear" data-role="button" data-theme="b" data-mini="true" class="btnborder">Server</a>
+            </div>
+            <div style="margin-top:2%;margin-bottom:2%;margin-right:2%;margin-left:2%; "  data-role="controlgroup" data-theme="b" class="stl">
+                <ul data-role="listview" data-theme="b" style="color: gainsboro" class="radious">
+                    <!--patientid-->
+                    <li data-icon="false" data-theme="b">
+                        <a href="#">
+                            <div   style="float: left;margin-top: 15px" data-mini="true">
+                                <label style=" font:bold 15px helvetica;color:#AAAAAA;">ID bệnh Nhân</label>
+                            </div>
+                            <div  style="float: right;width: 65%; ">
+                                <input type="text" data-mini="true" style="background-color: rgb(211, 209, 209);" id="patidtxt" />
+                            </div>
+                        </a>
+                    </li>
+                    <!--patient Name-->
+                    <li data-icon="false"  data-theme="b">
+                        <a href="#">
+                            <div   style="float: left;margin-top: 15px" data-mini="true">
+                                <label style=" font:bold 15px helvetica;color:#AAAAAA;">Tên bệnh nhân</label>
+                            </div>
+                            <div  style="float: right;width: 65%; ">
+                                <input type="text" data-mini="true" style="background-color: rgb(211, 209, 209);" id="patnametxt" />
+                            </div>
+                        </a>
+                    </li>
+                    <!--modality-->
+                    <li data-icon="false"  data-theme="b">
+                        <a href="#">
+                            <div   style="float: left;margin-top: 0px" data-mini="true">
+                                <label style=" font:bold 15px helvetica;color:#AAAAAA;">Phương thức</label>
+                            </div>
+                            <div  style="float: right;width: 65% ">
+                                <div id="modalitylink" style="width: 70%">ALL</div>
+                            </div>
+                        </a>
+                    </li>
+                    <!--studydate-->
+                    <li data-icon="false"  data-theme="b"><a href="#">
+                            <div style="float: left;">
+                                <label style="font: bold 15px helvetica;color:#AAAAAA;">Ngày cập nhật</label>
+                            </div>
+                            <div id="studydatetxt" style="float: right;width: 65%">
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!--            //footer-->
+            <div data-role="footer" class="ui-bar" data-position="fixed" data-theme="b" data-id="myFooter">
+                <div id="navgroup" style="float: left" >
+                    <div data-role="controlgroup" data-type="horizontal" style="margin-right:30px;">
+                        <!--<a href="#Quicksearchpage" id="qksearch" data-icon="search" data-role="button" data-theme="b" data-mini="true" class="active menu">Quick</a>-->
+                    </div>
+                </div>
+                <div id="navgroupa"  style="float: right">
+                    <div data-role="controlgroup" data-type="horizontal" style="margin-right:30px;">
+                        <a href="#" id="queryBtn" data-icon="search" data-rel="external" data-role="button" data-theme="b" data-mini="true"  class="feedback">Tìm kiếm</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div data-role="page" id="modalitypage" class="grdiv">
+            <div id="headertxt" data-theme="b" data-role="header"  data-mini="true" >
+                <h3>
+                    Modality
+                </h3>
+                <a class="btnborder" data-theme="b" href="#mainserch" data-transition="slideup"  data-mini="true">Trở về</a>
+                <a class="btnborder" data-theme="b"  href="#mainserch"  data-inline="false" id="modalityselect"  data-mini="true" >Hoàn tất</a>
+            </div>
+            <div data-role="content" id="content" data-theme="b">    
+            </div><!-- /content -->
+        </div>  
+        <div data-role="page" id="studydatepage" data-theme="b" class="grdiv">
+            <div  data-theme="b" data-role="header" data-mini="true">
+                <h3>
+                    Study Date
+                </h3>
+                <a  class="btnborder" data-theme="b" href="#mainserch" data-transition="slideup"  data-mini="true" >Trở về</a>
+                <a  class="btnborder" data-theme="b" id="searchdateselect"  data-inline="false"  data-mini="true" href="#mainserch" >Hoàn tất</a>
+            </div>
+            <div data-role="content" id="studydatecheck" data-theme="b"> 
+                <fieldset data-role="controlgroup" id="radioField" data-theme="b">
+                    <!--                    <legend>Choose a pet:</legend>-->
+                    <input  type="radio"  data-theme="b" name="radio-choice-1" id="radio-choice-0"  value="0"  />
+                    <label  for="radio-choice-0">Tất cả thời gian</label>
+                    <input  type="radio" data-theme="b" name="radio-choice-1" id="radio-choice-1" checked="checked" value="1"/>
+                    <label  for="radio-choice-1">Hôm nay</label>
+                    <input  type="radio" data-theme="b" name="radio-choice-1" id="radio-choice-2" value="2"/>
+                    <label  for="radio-choice-2">Sáng hôm nay</label>
+                    <input  type="radio" data-theme="b" name="radio-choice-1" id="radio-choice-3" value="3"/>
+                    <label  for="radio-choice-3">Tối hôm nay</label>
+                    <input  type="radio" data-theme="b" name="radio-choice-1" id="radio-choice-4" value="4"/>
+                    <label  for="radio-choice-4">Gần nhất trong 1 giờ</label>
+                    <input  type="radio" data-theme="b" name="radio-choice-1" id="radio-choice-5" value="5"/>
+                    <label  for="radio-choice-5">Gần nhất trong 4 giờ</label>
+                    <input  type="radio" data-theme="b" name="radio-choice-1" id="radio-choice-6" value="6"/>
+                    <label  for="radio-choice-6">Ngày hôm qua</label>
+                    <input  type="radio" data-theme="b" name="radio-choice-1" id="radio-choice-7" value="7"/>
+                    <label  for="radio-choice-7">Tuần qua</label>
+                    <input  type="radio" data-theme="b" name="radio-choice-1" id="radio-choice-8" value="8"/>
+                    <label  for="radio-choice-8">Tháng qua</label>
+                    <input  type="radio" data-theme="b" name="radio-choice-1" id="customv" value="custom"/>
+                    <label data-theme="b" for="customv">Thời gian tùy chọn</label>
+                    <div data-theme="b" data-role="content" id="datepickerstudy" style="display: none" > 
+                        <div data-theme="b" data-role="fieldcontain" style="display: none">
+                            <label data-theme="b" for="demoa">Demo</label>
+                            <label data-theme="b" id="demoa" class="changes">
+                            </label>
+                        </div>
+                        <div data-theme="b" data-role="fieldcontain" id="demoa_defaulta" class="demosa">
+                            <label for="test_default">Từ:</label>
+                            <input type="text" name="test_defaulta" id="test_defaulta" />
+                        </div>
+                        <div data-theme="b" data-role="fieldcontain" style="display: none">
+                            <label for="demo">Demo</label>
+                            <label  id="demo1" class="changes">
+                            </label>
+                        </div>
+                        <div data-theme="b" data-role="fieldcontain" id="demo1_default1" class="demos1">
+                            <label for="test_default">Đến:</label>
+                            <input type="text" name="test_default1" id="test_default1" />
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div data-role="page" id="Quicksearchpage" data-theme="b" class="grdiv">
+            <div id="headertxt" data-theme="b" data-role="header" >
+                <h3 >
+                    Quick Search
+                </h3>
+                <a class="btnborder" href="#mainserch" data-transition="slideup" data-icon="arrow-l"  data-mini="true">Trở lại</a>
+                <!--                <a class="button"  href="#mainserch"  data-inline="false"   ></a>-->
+            </div>
+            <div data-role="content" align="center"  data-theme="b">
+                <div id="quickSearchDiv" data-role="controlgroup" data-theme="b">
+                </div>
+            </div>
+        </div>
+
+        <div data-role="page" id="Patientpage" data-theme="b" style="background: black" >
+            <style>
+                /*            .ui-icon-custom2{
+                                background-image:url("css/images/invert.png")!important;
+                            }*/
+                .ui-icon-custom2 {
+                    background:transparent !important;; /* or none */
+                    box-shadow: none !important;
+                    background-image:url("css/images/invert.png")!important;
+                    /* The following border radius rules will override the circle around your icon */
+                    -moz-border-radius: 0px !important;;
+                    -webkit-border-radius:0px !important;;
+                    border-radius:0px !important;;
+                }
+                /* To fix the size issue override the .ui-icon height */
+                /*            .ui-icon{
+                                width:100px !important;;
+                                height:200px !important;;
+                            }*/
+                .ui-btn-corner-all {
+                    -moz-border-radius: 0;
+                    -webkit-border-radius: 0;
+                    border-radius: 0;
+                }
+                .ui-bar-a .ui-shadow,
+                .ui-bar-b .ui-shadow ,
+                .ui-bar-c .ui-shadow  {
+                    -moz-box-shadow: 0px 1px 0                 rgba(255,255,255,.3);
+                    -webkit-box-shadow: 0px 1px 0             rgba(255,255,255,.3);
+                    box-shadow: 0px 1px 0                     rgba(255,255,255,.3);
+                }
+                #patientback{
+                    border:2px solid;
+                    border-radius:25px;
+                    -moz-border-radius:25px; 
+                }
+                #numbrofstdy1{
+                    color: #479b01;
+/*                    border:2px solid;
+                    border-radius:25px;
+                    -moz-border-radius:25px; */
+                }
+            </style>
+            <div id="headertxt" data-theme="b" data-role="header" >
+                <h3 id="headingtxt" data-theme="b">Kết quả tìm kiếm</h3>
+
+                <!--                <a  id="patientback"   data-icon="home" >Home</a>
+                                 <a id="numbrofstdy"   > </a>-->
+
+                <a   id="patientback1" data-theme="b" data-rel= "back"   class="btnborder" data-icon="arrow-l" >Trở lại</a>
+                <a  id="numbrofstdy1"  class=""    ><div  id="numbrofstdy" >study</div></a>
+
+
+            </div>
+            <div data-theme="b" id="listviewlayer" data-role="content">
+                <ul  id="listviewuldata"  data-role="listview" data-divider-theme="b" data-inset="false">
+                </ul>
+            </div>
+        </div>
+
+        <div data-role="page" id="Seriespage" style="background: green" >
+            <div data-theme="b" data-role="header" >
+                <h3 id="headingseries">
+                </h3>
+                <a  class="button"  data-icon="arrow-l" data-rel= "back"  id="btnback1" >Trở lại</a>
+
+            </div>
+            <div id="seriesdiv" data-role="content" class="gd">
+                <ul class="mm" id="serieslist"  data-role="listview" data-theme="b" data-inset="false">
+                </ul>
+            </div>
+        </div>
+       
+    </body>
+</html>
